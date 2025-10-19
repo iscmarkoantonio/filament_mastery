@@ -6,6 +6,7 @@ use App\Filament\Resources\StockMovements\StockMovementResource;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Database\Eloquent\Model;
 
 class EditStockMovement extends EditRecord
 {
@@ -17,5 +18,26 @@ class EditStockMovement extends EditRecord
             ViewAction::make(),
             DeleteAction::make(),
         ];
+    }
+
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        $data['notes'] = 'This is the initial notes of the stock movement';
+
+        return $data;
+    }
+
+    protected function handleRecordUpdate(Model $record, array $data): Model
+    {
+        $data['notes'] = 'This is the final data that was transformed or changed';
+
+        $record->update($data);
+
+        return $record;
+    }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('view', ['record' => $this->record->id]);
     }
 }

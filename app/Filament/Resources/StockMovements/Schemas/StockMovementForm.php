@@ -29,6 +29,7 @@ class StockMovementForm
                 //     ->dehydrated()
                 //     ->required(),
                 ToggleButtons::make('type')
+                    ->grouped()
                     ->options([
                         'in' => 'Stock in',
                         'out' => 'Stock Out',
@@ -37,7 +38,6 @@ class StockMovementForm
                         'in' => 'success',
                         'out' => 'danger',
                     ])
-                    ->grouped()
                     ->required(),
                 TextInput::make('quantity')
                     ->required()
@@ -52,6 +52,7 @@ class StockMovementForm
                     ->rows(5)
                     ->required(),
                 Textarea::make('notes')
+                    ->default(null)
                     ->columnSpanFull(),
                 DateTimePicker::make('movement_date')
                     ->required()

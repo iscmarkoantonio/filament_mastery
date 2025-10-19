@@ -19,7 +19,8 @@ class CreateStockMovement extends CreateRecord
 
     protected function handleRecordCreation(array $data): Model
     {
-        $data['user_id'] = auth()->id();
+        // $data['user_id'] = auth()->id();
+        $data['user_id'] = auth()->user()->id;
         return static::getModel()::create($data);
     }
 

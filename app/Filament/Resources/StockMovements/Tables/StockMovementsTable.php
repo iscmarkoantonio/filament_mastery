@@ -42,6 +42,8 @@ class StockMovementsTable
                 TextColumn::make('reason')
                     ->limit(50)
                     ->searchable(),
+                TextColumn::make('notes')
+                    ->searchable(),
                 TextColumn::make('movement_date')
                     ->dateTime()
                     ->sortable(),
